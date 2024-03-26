@@ -3,17 +3,28 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<div class="row mb-5">
+    <div class="col-md-6 offset-md-3 d-flex justify-content-center mt-5">
 
-    {{ form_errors(registrationForm) }}
+        <div class="card w-100 bg-dark text-white border-primary">
+            <div class="card-header border-primary">
+                <h3>Register</h3>
+            </div>
+            <div class="card-body">
+                {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                    <a href="{{ path("app_login") }}" class="btn btn-outline-danger">Back</a>
+                    <button type="submit" class="btn btn-outline-primary">Register</button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
