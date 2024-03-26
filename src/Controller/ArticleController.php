@@ -30,6 +30,9 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $date = new \DateTime();
+            $article->setCreatedAt($date);
+            $article->setAuthor($this->getUser());
             $entityManager->persist($article);
             $entityManager->flush();
 
