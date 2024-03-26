@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    container_name: myblog-db
+    image: mariadb:10.5.8
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./var/db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app_db
+      TZ: Europe/Paris
+    networks:
+      - network
+  phpmyadmin:
+    container_name: my-blog-pma
+    image: phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+    networks:
+      - network
+networks:
+  network:
